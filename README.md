@@ -1,2 +1,1 @@
-# fusebox-front-and-backend
-Simple sample using nodejs as backend
+### fusebox backend(node)/frontend sample

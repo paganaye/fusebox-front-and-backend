@@ -1,0 +1,16 @@
+{
+  "name": "fusebox-front-and-backend",
+  "version": "1.0.0-beta1",
+  "description": "fusebox-front-and-backend(node)",
+  "author": "Vegar Ringdal <vegar.ringdal@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^12.7.0",
+    "express": "^4.17.1",
+    "lit-html": "^1.1.1",
+    "fuse-box": "^4.0.0-alpha.61",
+    "fuse-box-typechecker": "^3.0.0-next.8",
+    "typescript": "^3.5.3"
+  }
+}

@@ -1,0 +1,16 @@
+.vscode
+doc
+test
+.editorconfig
+.gitignore
+.npmignore
+fuse.js
+build.js
+.prettierrc.json
+node_modules/
+dev/
+.cache
+.fusebox
+tsconfig.json
+tsconfig-build.json
+tslint.json

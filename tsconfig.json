@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "rootDir": "./",
+        "target": "es2017",
+        "module": "esNext",
+        "lib":["es2017", "dom"],
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "outDir": "dev",
+        "preserveConstEnums": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "declaration": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitUseStrict": true,
+        "noUnusedParameters": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitThis": false,
+        "noUnusedLocals": true,
+        "allowUnreachableCode": false,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "importHelpers": true,
+        "strictNullChecks": false,
+        "experimentalDecorators": true,
+        "baseUrl": "./",
+        "paths": {
+            "lit-html-free-router": [
+              "./src/lit-html-free-router"
+            ]
+          },
+    } ,
+    "exclude": [
+      "node_modules",
+      "dist",
+      "distTS",
+      "script"
+    ],
+}

@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug node",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}\\dist\\backend\\_server_entry.js",
+            "smartStep": true,
+            "sourceMaps": true
+        },
+        {
+            // node --inspect-brk ./dist/backend/_server_entry.js, need fusebox to include --inspect-brk
+            "name": "Debug dev server",
+            "type": "node",
+            "request": "attach",
+            "stopOnEntry": false,
+            "port": 9229,
+            "restart": true, 
+            "smartStep": true,
+            "sourceMaps": true
+        }
+    ]
+}
