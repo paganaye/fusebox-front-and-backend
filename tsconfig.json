@@ -25,12 +25,7 @@
         "importHelpers": true,
         "strictNullChecks": false,
         "experimentalDecorators": true,
-        "baseUrl": "./",
-        "paths": {
-            "lit-html-free-router": [
-              "./src/lit-html-free-router"
-            ]
-          },
+        "baseUrl": "./"
     } ,
     "exclude": [
       "node_modules",

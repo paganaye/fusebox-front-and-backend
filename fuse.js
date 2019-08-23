@@ -13,7 +13,7 @@ class Context {
             watch: true,
             dependencies: { ignoreAllExternal: true },
             logging: { level: 'succinct' },
-            plugins: [pluginTypeChecker({ name: 'backend', basePath:'./src/backend' })],
+            plugins: [pluginTypeChecker({ name: 'backend', basePath: './src/backend' })],
             cache: {
                 enabled: false,
                 root: '.cache/backend'
@@ -33,7 +33,7 @@ class Context {
                 publicPath: './',
                 template: 'src/frontend/index.html'
             },
-            plugins: [pluginTypeChecker({ name: 'frontend', basePath:'./src/frontend' })],
+            plugins: [pluginTypeChecker({ name: 'frontend', basePath: './src/frontend' })],
             cache: {
                 enabled: false,
                 root: '.cache/frontend'
@@ -47,7 +47,7 @@ class Context {
     }
 }
 const { task, rm } = sparky(Context);
-
+let watchStarted = false;
 task('default', async ctx => {
     await rm('./dist');
 
@@ -55,7 +55,16 @@ task('default', async ctx => {
     await frontendConfig.runDev();
 
     const backendConfig = ctx.getBackendConfig();
-    await backendConfig.runDev();
+    await backendConfig.runDev(handler => {
+        handler.onComplete(output => {
+            if(process.argv[3]==="debug"){
+                output.server.handleEntry({ nodeArgs: ['--inspect-brk'], scriptArgs: [] });
+            } else {
+               output.server.handleEntry({ nodeArgs: [], scriptArgs: [] });
+            }
+            
+        });
+    });
 });
 
 task('dist', async ctx => {
