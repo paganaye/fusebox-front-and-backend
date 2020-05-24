@@ -44,11 +44,12 @@ class Context {
                 enabled: !prod,
                 root: '.cache/frontend'
             },
-            watch: true,
-            devServer: {
-                httpServer: !prod,
-                hmrServer: !prod
-            }
+            watcher: {
+                enabled: !prod,
+                include: ['./src/frontend'],
+                ignored: ['dist', 'dev']
+            },
+            devServer: prod ? false : { httpServer: { port: 8080 } }
         });
     }
 }
@@ -76,7 +77,6 @@ task('default', async (ctx) => {
         }
     });
 });
-
 
 task('dist', async (ctx) => {
     await rm('./dist');
