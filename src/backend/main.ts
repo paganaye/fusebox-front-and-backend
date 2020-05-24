@@ -15,5 +15,5 @@ app.use('/cool', ()=>{
 });
 
 app.listen(PORT, HOST);
-console.log(` -> Running on http://${HOST}:${PORT}`);
+console.log(` -> Running on http://localhost:${PORT}`);
 console.log(` -> Serving pages from ${path.join(__dirname, '../', 'frontend')}`)
