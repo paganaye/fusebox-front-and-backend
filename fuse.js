@@ -11,7 +11,6 @@ class Context {
     runServer;
     getBackendConfig(prod) {
         return fusebox({
-            output: 'dist/backend/$name-$hash',
             target: 'server',
             entry: './src/backend/main.ts',
             watcher: {
@@ -31,7 +30,6 @@ class Context {
 
     getFrontendConfig(prod) {
         return fusebox({
-            output: 'dist/frontend/$name-$hash',
             target: 'browser',
             entry: './src/frontend/index.ts',
             dependencies: { include: ['tslib'] },
