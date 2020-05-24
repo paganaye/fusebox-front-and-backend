@@ -1,81 +1,94 @@
 const { fusebox, sparky } = require('fuse-box');
 const { pluginTypeChecker } = require('fuse-box-typechecker');
 
+// get dbug for server side
+process.env.password = process.argv[3];
+const use = process.argv[3];
+console.log(process.argv);
+
 class Context {
     isProduction;
     runServer;
-    getBackendConfig() {
+    getBackendConfig(prod) {
         return fusebox({
             output: 'dist/backend/$name-$hash',
             target: 'server',
-            homeDir: 'src/backend',
-            entry: 'main.ts',
-            watch: true,
+            entry: './src/backend/main.ts',
+            watcher: {
+                enabled: !prod,
+                include: ['./src/backend'],
+                ignored: ['dist', 'dev']
+            },
             dependencies: { ignoreAllExternal: true },
             logging: { level: 'succinct' },
-            plugins: [pluginTypeChecker({ name: 'backend', basePath: './src/backend' })],
+            plugins: [pluginTypeChecker({ name: 'backend', basePath: './src/backend', tsConfig: '../../tsconfig' })],
             cache: {
-                enabled: false,
+                enabled: true,
                 root: '.cache/backend'
             }
         });
     }
 
-    getFrontendConfig() {
+    getFrontendConfig(prod) {
         return fusebox({
             output: 'dist/frontend/$name-$hash',
             target: 'browser',
-            homeDir: 'src/frontend',
-            entry: 'index.ts',
+            entry: './src/frontend/index.ts',
             dependencies: { include: ['tslib'] },
+            hmr: { plugin: './src/frontend/fuseHmrPlugin.ts' },
             logging: { level: 'succinct' },
             webIndex: {
                 publicPath: './',
                 template: 'src/frontend/index.html'
             },
-            plugins: [pluginTypeChecker({ name: 'frontend', basePath: './src/frontend' })],
+            plugins: [pluginTypeChecker({ name: 'frontend', basePath: './src/frontend', tsConfig: '../../tsconfig' })],
             cache: {
-                enabled: false,
+                enabled: !prod,
                 root: '.cache/frontend'
             },
             watch: true,
             devServer: {
-                httpServer: false,
-                hmrServer: false
+                httpServer: !prod,
+                hmrServer: !prod
             }
         });
     }
 }
-const { task, rm } = sparky(Context);
+
+const { task, rm, src } = sparky(Context);
 let watchStarted = false;
-task('default', async ctx => {
+task('default', async (ctx) => {
     await rm('./dist');
+    await rm('/.cache'); // been trick by cache..
 
     const frontendConfig = ctx.getFrontendConfig();
-    await frontendConfig.runDev();
+    await frontendConfig.runDev({ bundles: { distRoot: 'dist/frontend', app: 'app.js' } });
 
     const backendConfig = ctx.getBackendConfig();
-    await backendConfig.runDev(handler => {
-        handler.onComplete(output => {
-            if(process.argv[3]==="debug"){
-                output.server.handleEntry({ nodeArgs: ['--inspect-brk'], scriptArgs: [] });
-            } else {
-               output.server.handleEntry({ nodeArgs: [], scriptArgs: [] });
-            }
-            
-        });
+    const { onComplete } = await backendConfig.runDev({ bundles: { distRoot: 'dist/backend', app: 'app.js' } });
+
+    await src(`./resources/**/*.*`).dest(`./dist/frontend`, `resources`).exec();
+
+    onComplete((output) => {
+        if (use === 'debug') {
+            output.server.start({ argsBefore: ['--inspect-brk'] });
+        } else {
+            //output.server.start( {argsBefore:['--inspect-brk']});
+            output.server.start();
+        }
     });
 });
 
-task('dist', async ctx => {
+
+task('dist', async (ctx) => {
     await rm('./dist');
+    await rm('/.cache');
 
-    const frontendConfig = ctx.getFrontendConfig();
-    await frontendConfig.runProd({ uglify: false });
+    const backendConfig = ctx.getBackendConfig(true);
+    await backendConfig.runDev({ bundles: { distRoot: 'dist/backend', app: 'app.js' } });
 
-    const backendConfig = ctx.getBackendConfig();
-    await backendConfig.runProd({
-        uglify: true,
-        manifest: true
-    });
+    const frontendConfig = ctx.getFrontendConfig(true);
+    await frontendConfig.runProd({ uglify: true, bundles: { distRoot: 'dist/frontend', app: 'app.js' } });
+
+    await src(`./resources/**/*.*`).dest(`./dist/frontend`, `resources`).exec();
 });
