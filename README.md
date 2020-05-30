@@ -18,7 +18,10 @@ npm start
 
 ## debug server
 
+start vscode
+
+In the run bar select `Debug dev server` and start it with F5
 ```
-start vscode `Debug dev server` then run `npm run debug`
+ npm run debug
 ```
 

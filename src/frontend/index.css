@@ -1,3 +1,39 @@
 body {
-    background-color: hotpink;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+h1 {
+    border: 2px solid hotpink;
+    background-color: lightpink;
+    border-radius: 20px;
+    padding: 0.4em 1em;
+}
+
+var {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;;
+    background-color: lightgray;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+}
+
+code {
+    color: white;
+    background-color: black;
+    display: block;
+    padding: 0.4em;
+}
+
+main p, main code, main iframe {
+    margin-left: 2em;
+}
+
+.warning {
+    padding: 2px;
+    background-color: orange;
 }

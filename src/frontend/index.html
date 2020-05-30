@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    $bundles
-    $css
-</head>
-<body>
-    wow
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        $bundles $css
+    </head>
+    <body>
+        <main>
+            <h1>fusebox-front-and-back-end</h1>
+            <p>Welcome to <var>fusebox-front-and-back-end</var></p>
+            <p>This repository is a starting boilerplate for a typescript app using typescript services and the formidable <a href="https://fuse-box.org/">fusebox v4</a> bundler.</p>
+            <h2>Quick start</h2>
+            <p>get the code</p>
+            <p>in a console type</p>
+            <code
+                >git clone https://github.com/vegarringdal/fusebox-front-and-backend.git myapp<br />
+                cd myapp<br />
+                npm install
+            </code>
+            <p>Then start the develoment web server</p>
+            <code>
+                npm run debug
+            </code>
+
+            <p>Then open this page your favorite browser <a href="http://localhost/">http://localhost/</a></p>
+
+            <h2>Features</h2>
+            <h3>static content</h3>
+            <p>This file is in <var>src\frontend\index.html</var></p>
+            <p>Editing the file will refresh the page automatically.</p>
+            <p>Editing the file <var>src\frontend\index.css</var> with also refresh the page automatically.</p>
+            
+            <h3>dynamic content</h3>
+            <div id="dynamic-content"></div>
+            <h3>server content</h3>
+            <p>Finally this demo is able to call a service node service and use it in the front end.</p>
+            <div id="server-content"></div>
+        </main>
+    </body>
 </html>
