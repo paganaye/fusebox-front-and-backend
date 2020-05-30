@@ -49,7 +49,10 @@ class Context {
                 include: ['./src/frontend'],
                 ignored: ['dist', 'dev']
             },
-            devServer: prod ? false : { httpServer: { port: 8080 } }
+            devServer: {
+                httpServer: false,
+                hmrServer: prod ? false : { port: 4444, connectionURL: 'ws://127.0.0.1:4444' }
+            }
         });
     }
 }

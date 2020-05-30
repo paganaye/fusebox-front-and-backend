@@ -3,7 +3,7 @@ const path = require('path')
 const express = require('express');
 
 // Constants
-const PORT = 8080;
+const PORT = 80;
 const HOST = '0.0.0.0'
 
 // App
@@ -15,5 +15,5 @@ app.use('/cool', ()=>{
 });
 
 app.listen(PORT, HOST);
-console.log(` -> Running on http://localhost:${PORT}`);
-console.log(` -> Serving pages from ${path.join(__dirname, '../', 'frontend')}`)
+console.log(`\n -> Running on http://localhost:${PORT}`);
+console.log(` -> Serving pages from ${path.join(__dirname, '../', 'frontend')}\n`)

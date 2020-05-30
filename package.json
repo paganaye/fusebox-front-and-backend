@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
+    "start": "node fuse",
     "watch": "node fuse",
     "debug": "node fuse default debug",
     "dist": "node fuse dist"

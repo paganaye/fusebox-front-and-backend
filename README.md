@@ -2,7 +2,7 @@
 
 
 ## normal:
-`npm run watch`
+`npm start`
 
 
 ## debug server
