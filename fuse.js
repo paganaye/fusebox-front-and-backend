@@ -50,7 +50,7 @@ class Context {
                 ignored: ['dist', 'dev']
             },
             devServer: {
-                httpServer: false,
+                httpServer: prod ? false : { port: 4444 },
                 hmrServer: prod ? false : { port: 4444, connectionURL: 'ws://127.0.0.1:4444' }
             }
         });

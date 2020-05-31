@@ -2,9 +2,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
 h1 {
-    border: 2px solid hotpink;
+    border: 2px solid #c00;
     background-color: lightpink;
     border-radius: 20px;
     padding: 0.4em 1em;
@@ -13,8 +12,8 @@ h1 {
 var {
     display: inline-block;
     padding: 2px 8px;
-    border-radius: 6px;;
-    background-color: lightgray;
+    border-radius: 6px;
+    background-color: #fcc;
 }
 
 main {
@@ -29,7 +28,9 @@ code {
     padding: 0.4em;
 }
 
-main p, main code, main iframe {
+main p,
+main code,
+main iframe {
     margin-left: 2em;
 }
 
