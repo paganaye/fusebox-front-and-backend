@@ -1,5 +1,6 @@
-node_modules/
+.cache/
+.fusebox/
+coverage/
 dev/
-dist
-.cache
-.fusebox
+dist/
+node_modules/

@@ -7,14 +7,19 @@
   "dependencies": {},
   "scripts": {
     "start": "node fuse",
-    "dist": "node fuse dist"
+    "dist": "node fuse dist",
+    "test": "jest --watch",
+    "test coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/express": "^4.17.6",
+    "@types/jest": "^25.2.3",
     "@types/node": "^12.7.0",
     "express": "^4.17.1",
     "fuse-box": "^4.0.0-next.424",
     "fuse-box-typechecker": "^3.0.0-next.31",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.8.3"
   }
 }

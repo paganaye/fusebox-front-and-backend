@@ -7,6 +7,7 @@
         "moduleResolution": "node",
         "isolatedModules": false,
         "outDir": "dev",
+        "types": ["jest"],
         "preserveConstEnums": true,
         "allowSyntheticDefaultImports": true,
         "skipLibCheck": true,
