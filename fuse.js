@@ -1,10 +1,8 @@
 const { fusebox, sparky } = require('fuse-box');
 const { pluginTypeChecker } = require('fuse-box-typechecker');
 
-// get dbug for server side
-process.env.password = process.argv[3];
-const use = process.argv[3];
-console.log(process.argv);
+console.log("=====================================================================================");
+
 
 class Context {
     isProduction;
@@ -59,9 +57,10 @@ class Context {
 
 const { task, rm, src } = sparky(Context);
 let watchStarted = false;
-task('default', async (ctx) => {
+task('default', async (ctx) => { 
+    // this is run by the [start] npm task.
     await rm('./dist');
-    await rm('/.cache'); // been trick by cache..
+    await rm('/.cache'); // been tricked by cache...
 
     const frontendConfig = ctx.getFrontendConfig();
     await frontendConfig.runDev({ bundles: { distRoot: 'dist/frontend', app: 'app.js' } });
@@ -72,12 +71,7 @@ task('default', async (ctx) => {
     await src(`./resources/**/*.*`).dest(`./dist/frontend`, `resources`).exec();
 
     onComplete((output) => {
-        if (use === 'debug') {
-            output.server.start({ argsBefore: ['--inspect-brk'] });
-        } else {
-            //output.server.start( {argsBefore:['--inspect-brk']});
-            output.server.start();
-        }
+        output.server.start({ argsBefore: ['--inspect-brk'] });
     });
 });
 
@@ -92,4 +86,6 @@ task('dist', async (ctx) => {
     await frontendConfig.runProd({ uglify: true, bundles: { distRoot: 'dist/frontend', app: 'app.js' } });
 
     await src(`./resources/**/*.*`).dest(`./dist/frontend`, `resources`).exec();
+
+    console.log("Dist finished. the generated code is available in the /dist folder.")
 });

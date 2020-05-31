@@ -1,27 +1,44 @@
-### fusebox backend(node)/frontend sample
+# fusebox backend(node)/frontend sample
 
 A fork from https://github.com/vegarringdal/fusebox-front-and-backend
 
-My initial goals are:
-   - Improve the documentation
-   - Try to make it more beginner friendly
-   - Improve the integration with VS Code 
+## Features
+* One minute installation
+* Minimal dependencies
+* Automatic refresh when the code changes
+* Debugging in vscode of both backend and frontend
 
-At this stage I have done nothing.
-
-## normal:
-
+## Quick start
+### Installation
+Get the code. Either download it from github or in a console type. 
 ```
-npm start
+git clone https://github.com/vegarringdal/fusebox-front-and-backend.git myapp
+cd myapp
+npm install
 ```
 
+### Start the development server
+```
+npm run start
+```
+Then open this page your favorite browser http://localhost/
 
-## debug server
+
+## debug the backend
 
 start vscode
+```
+ code
+```
+Then select the run Run tab `Ctrl+shift+D`. There you can select the debugging target and start it (or `F5`)
 
-In the run bar select `Debug dev server` and start it with F5
-```
- npm run debug
-```
+![debug backend](docs/debug-backend.png)
+
+## debug the frontend
+
+To debug the frontend, from visual studio code, you need to install the extension : Debugger for Chrome `msjsdiag.debugger-for-chrome`.
+
+![debug othe](docs/debug-other.png)
+
+
 

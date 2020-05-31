@@ -1,5 +1,6 @@
 import './index.css'
-console.log('frontend works');
+
+// This code runs in the browser.
 
 document.addEventListener("DOMContentLoaded", function(_event) { 
     let dynamicContent = document.getElementById("dynamic-content");

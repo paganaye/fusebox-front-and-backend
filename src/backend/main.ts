@@ -1,12 +1,16 @@
 'use strict';
 import api from "./services/api";
 
+
 const path = require('path')
 const express = require('express');
 
 // Constants
 const PORT = 80;
 const HOST = '0.0.0.0'
+
+// This code runs on the server.
+console.log("backend", {process: process.pid, argv: process.argv });
 
 // App
 const app = express();

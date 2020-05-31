@@ -2,15 +2,32 @@
     "version": "0.2.0",
     "configurations": [
         {
-            // start this before you run "npm run debug"
-            "name": "Debug dev server",
             "type": "node",
-            "request": "attach",
-            "stopOnEntry": false,
-            "port": 9229,
-            "restart": true, 
-            "smartStep": true,
-            "sourceMaps": true
+            "request": "launch",
+            "name": "debug backend",
+            "program": "${workspaceFolder}/fuse.js",
+            "autoAttachChildProcesses": true,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "debug frontend",
+            "url": "http://localhost/",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "debug dist",
+            "program": "${workspaceFolder}/fuse.js",
+            "autoAttachChildProcesses": true,
+            "args": ["dist"],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
     ]
 }
