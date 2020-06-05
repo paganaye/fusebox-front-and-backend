@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "start": "node fuse",
+    "build": "node fuse",
     "dist": "node fuse dist",
     "test": "jest --watch",
     "test coverage": "jest --coverage"

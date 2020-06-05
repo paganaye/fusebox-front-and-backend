@@ -24,7 +24,7 @@
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "importHelpers": true,
-        "strictNullChecks": false,
+        "strictNullChecks": true,
         "experimentalDecorators": true,
         "baseUrl": "./"
     } ,

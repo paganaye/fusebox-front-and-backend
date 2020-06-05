@@ -18,7 +18,12 @@ class Context {
             },
             dependencies: { ignoreAllExternal: true },
             logging: { level: 'succinct' },
-            plugins: [pluginTypeChecker({ name: 'backend', basePath: './src/backend', tsConfig: '../../tsconfig' })],
+            plugins: [pluginTypeChecker({
+                name: 'backend',
+                basePath: './src/backend',
+                tsConfig: '../../tsconfig',
+                shortenFilenames: false
+            })],
             cache: {
                 enabled: true,
                 root: '.cache/backend'
@@ -37,7 +42,12 @@ class Context {
                 publicPath: './',
                 template: 'src/frontend/index.html'
             },
-            plugins: [pluginTypeChecker({ name: 'frontend', basePath: './src/frontend', tsConfig: '../../tsconfig' })],
+            plugins: [pluginTypeChecker({
+                name: 'frontend',
+                basePath: './src/frontend',
+                tsConfig: '../../tsconfig',
+                shortenFilenames: false
+            })],
             cache: {
                 enabled: !prod,
                 root: '.cache/frontend'
@@ -45,7 +55,7 @@ class Context {
             watcher: {
                 enabled: !prod,
                 include: ['./src/frontend'],
-                ignored: ['dist', 'dev']
+                ignored: ['dist', 'dev'],
             },
             devServer: {
                 httpServer: prod ? false : { port: 4444 },
@@ -57,7 +67,7 @@ class Context {
 
 const { task, rm, src } = sparky(Context);
 let watchStarted = false;
-task('default', async (ctx) => { 
+task('default', async (ctx) => {
     // this is run by the [start] npm task.
     await rm('./dist');
     await rm('/.cache'); // been tricked by cache...

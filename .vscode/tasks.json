@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "build",
+            "problemMatcher": {
+                "owner": "typescript",
+                "fileLocation": "relative",
+                "applyTo": "allDocuments",
+                "severity": "error",
+                "pattern": {
+                    "regexp": "^    -  (?<path>.*):(?<line>\\d+):(?<column>\\d+) \\((?<severity>\\w+):(?<errorcode>.*)\\) (?<errormessage>.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 6
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^  init .* Calling thread for new report, please wait.*$",
+                    "endsPattern": "^  changed .*$"
+                },
+                "source": "typescript"
+            },
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            },
+            "label": "npm: build",
+            "detail": "node fuse",
+            "isBackground": true
+        }
+    ]
+}
